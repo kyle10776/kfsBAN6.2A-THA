@@ -9,6 +9,6 @@ namespace ShoppingCart.Application.ViewModels
         public ProductViewModel Product { get; set; }
         public int Quantity { get; set; }
 
-        //member
+        public string Email { get; set; }
     }
 }

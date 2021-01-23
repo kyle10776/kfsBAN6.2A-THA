@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.ViewModels;
+using ShoppingCart.Data.Repositories;
 using ShoppingCart.Domain.Interfaces;
 using ShoppingCart.Domain.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace ShoppingCart.Application.Services
 {
@@ -23,25 +20,21 @@ namespace ShoppingCart.Application.Services
             _autoMapper = autoMapper;
         }
 
-        public void AddProduct(CartViewModel model)
+        public void AddToCart(CartViewModel item)
         {
-            _cartsRepo.AddCart(_autoMapper.Map<Cart>(model));
+            _cartsRepo.AddCart(_autoMapper.Map<Cart>(item));
         }
 
-        public void DeleteProduct(Guid id)
+        public void DeleteFromCart(Guid id)
         {
             _cartsRepo.DeleteCart(id);
         }
-        /*
-        public CartViewModel GetCart()
+
+        public IQueryable<CartViewModel> GetCartForUser(string email)
         {
-            var p = _cartsRepo.GetCart(id);
-            if (p == null) return null;
-            else
-            {
-                var result = _autoMapper.Map<CartViewModel>(p);
-                return result;
-            }
-        }*/
+            return _cartsRepo.GetCarts().Where(p => p.Email.Equals(email))
+                .ProjectTo<CartViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
     }
 }

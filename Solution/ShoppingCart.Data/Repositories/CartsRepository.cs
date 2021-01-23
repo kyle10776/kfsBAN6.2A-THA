@@ -37,5 +37,10 @@ namespace ShoppingCart.Data.Repositories
             _context.Carts.Remove(c);
             _context.SaveChanges();
         }
+
+        public IQueryable<Cart> GetCarts()
+        {
+            return _context.Carts.Include(x => x.Product);
+        }
     }
 }
