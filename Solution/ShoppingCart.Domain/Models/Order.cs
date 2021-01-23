@@ -11,7 +11,6 @@ namespace ShoppingCart.Domain.Models
         public Guid Id { get; set; }
         public DateTime DatePlaced { get; set; }
         public string Email { get; set; }
-        
-
+       
     }
 }
