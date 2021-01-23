@@ -12,6 +12,5 @@ namespace ShoppingCart.Domain.Models
         public DateTime DatePlaced { get; set; }
         public string Email { get; set; }
         
-
     }
 }
