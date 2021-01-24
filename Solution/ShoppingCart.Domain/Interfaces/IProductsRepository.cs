@@ -15,6 +15,8 @@ namespace ShoppingCart.Domain.Interfaces
 
         void DeleteProduct(Guid id) ;
 
-     
+        void DecreaseStock(Guid id, int qty);
+
+        void Next();
     }
 }

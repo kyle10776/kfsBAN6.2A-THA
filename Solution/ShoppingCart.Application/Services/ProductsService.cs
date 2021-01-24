@@ -33,6 +33,11 @@ namespace ShoppingCart.Application.Services
             _productsRepo.DeleteProduct(id);
         }
 
+        public void DecreaseStock(Guid id, int qty)
+        {
+            _productsRepo.DecreaseStock(id, qty);
+        }
+
         public ProductViewModel GetProduct(Guid id)
         {
             var p = _productsRepo.GetProduct(id);
@@ -51,7 +56,6 @@ namespace ShoppingCart.Application.Services
 
         }
 
-
         public IQueryable<ProductViewModel> GetProducts(string keyword)
         {           
             return _productsRepo.GetProducts().Where(p => p.Description.Contains(keyword)  
@@ -59,6 +63,10 @@ namespace ShoppingCart.Application.Services
                 .ProjectTo<ProductViewModel>(_autoMapper.ConfigurationProvider);
         }
 
+        //public IQueryable<ProductViewModel> GetNextProducts(int batch, int index)
+        //{
+
+        //}
 
     }
 }

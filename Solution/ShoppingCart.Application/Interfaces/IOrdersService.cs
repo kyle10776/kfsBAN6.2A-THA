@@ -8,7 +8,7 @@ namespace ShoppingCart.Application.Interfaces
 {
     public interface IOrdersService
     {
-        void Checkout();
-       // IQueryable<OrderViewModel> GetCartForUser(string email);
+        void Checkout(string user);
+        Guid CreateOrder(OrderViewModel model);
     }
 }

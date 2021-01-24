@@ -57,7 +57,7 @@ namespace PresentationApp.Controllers
                     var cart = new CartViewModel()
                     {
                         Email = user,
-                        Product = product,
+                        ProductId = product.Id,
                         Quantity = qty
                     };
 
@@ -68,7 +68,7 @@ namespace PresentationApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["warning"] = "Product could not added to cart";
+                TempData["warning"] = "Error: Product could not be added to cart, please try again later";
             }
 
             return RedirectToAction("Index");
@@ -87,7 +87,7 @@ namespace PresentationApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["warning"] = "Product was not removed from cart";
+                TempData["warning"] = "Error: Product could not be removed from cart, please try again later";
             }
 
             return RedirectToAction("Index");

@@ -22,5 +22,13 @@ namespace ShoppingCart.Data.Repositories
         {
             return _context.OrderDetails.SingleOrDefault(x => x.Id == id);
         }
+
+        public Guid CreateOrderDetails(OrderDetail od)
+        {
+            _context.OrderDetails.Add(od);
+            _context.SaveChanges();
+
+            return od.Id;
+        }
     }
 }

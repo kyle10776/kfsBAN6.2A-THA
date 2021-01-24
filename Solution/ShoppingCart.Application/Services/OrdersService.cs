@@ -19,9 +19,15 @@ namespace ShoppingCart.Application.Services
             _ordersRepo = ordersRepo;
             _autoMapper = autoMapper;
         }
-        public void Checkout()
-        {
 
+        public Guid CreateOrder(OrderViewModel model)
+        {
+            return _ordersRepo.CreateOrder(_autoMapper.Map<Order>(model));
+        }
+
+        public void Checkout(string user)
+        {
+            _ordersRepo.Checkout(user);
         }
     }
 }

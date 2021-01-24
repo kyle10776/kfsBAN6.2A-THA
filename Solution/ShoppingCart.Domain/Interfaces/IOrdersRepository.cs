@@ -10,6 +10,8 @@ namespace ShoppingCart.Domain.Interfaces
     {
         Order GetOrder(Guid id);
 
-        void Checkout();
+        Guid CreateOrder(Order o);
+
+        void Checkout(string user);
     }
 }

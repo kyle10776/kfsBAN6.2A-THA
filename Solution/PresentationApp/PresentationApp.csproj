@@ -18,6 +18,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\Manage\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

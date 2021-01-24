@@ -37,6 +37,13 @@ namespace ShoppingCart.Data.Repositories
             _context.SaveChanges();
         }
 
+        public void DecreaseStock(Guid id, int qty)
+        {
+            Product p = GetProduct(id);
+            p.Stock = p.Stock - qty;
+            _context.SaveChanges();
+        }
+
         public Product GetProduct(Guid id)
         { 
             return _context.Products.Include(x => x.Category).SingleOrDefault(x => x.Id == id);
@@ -45,6 +52,11 @@ namespace ShoppingCart.Data.Repositories
         public IQueryable<Product> GetProducts()
         { 
             return _context.Products.Include(x=>x.Category);
+        }
+
+        public void Next()
+        {
+
         }
     }
 }

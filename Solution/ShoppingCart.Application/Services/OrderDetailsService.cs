@@ -19,5 +19,9 @@ namespace ShoppingCart.Application.Services
             _orderDetailsRepo = orderDetailsRepo;
             _autoMapper = autoMapper;
         }
+        public void CreateOrderDetails(OrderDetailsViewModel model)
+        {
+            _orderDetailsRepo.CreateOrderDetails(_autoMapper.Map<OrderDetail>(model));
+        }
     }
 }

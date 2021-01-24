@@ -50,30 +50,24 @@ namespace PresentationApp.Controllers
             }
         }
 
-
-    /*    public IActionResult Next()
-        {
-            int batchNo = 0;
-            string page = HttpContext.Session.GetString("batchNo");
-            if (page == null){ batchNo = 0;  .... }
-            else
-            { batchNo = Convert.ToInt32(HttpContext.Session.GetString("batchNo"));
-                batchNo += 10;
-
-              var list =  _prodService.GetProducts().Skip(batchNo).Take(10);
-
-                HttpContext.Session.SetString("batchNo", batchNo.ToString());
-                return View("Index", list);
-            }
-           
-        }
-    */
-
-        //[HttpPost]
-        //[Route("Products/Search")]
-        //public IActionResult Search(string keyword) //View you have to use a Form
+        //public IActionResult Next()
         //{
-        //    var list = _prodService.GetProducts(keyword);
+        //    int index = 0;
+        //    List<ProductViewModel> list = new List<ProductViewModel>();
+        //    string page = HttpContext.Session.GetString("batchPosition");
+        //    if (page == null)
+        //    {
+        //        index = 0;
+        //        list = _prodService.GetNextProducts(5, index).ToList();
+        //    }
+        //    else
+        //    {
+        //        index = Convert.ToInt32(HttpContext.Session.GetString("batchPosition"));
+        //        index += 5;
+        //        list = _prodService.GetNextProducts(5, index).ToList();
+
+        //        HttpContext.Session.SetString("batchPosition", index.ToString());
+        //    }
         //    return View("Index", list);
         //}
 
@@ -85,7 +79,6 @@ namespace PresentationApp.Controllers
             return View(p);
         }
 
-        //-------------------- ADD -----------------------------
 
         [HttpGet] //this will be called before loading the Create page
         [Authorize(Roles ="Admin")]
@@ -103,7 +96,7 @@ namespace PresentationApp.Controllers
         [HttpPost] //2nd method will  be triggered when the user clicks on the submit button!
         [Authorize(Roles = "Admin")]
         [Route("Products/Create")]
-        public IActionResult Create(CreateModel data) //postman, fiddler, burp, zap
+        public IActionResult Create(CreateModel data)
         {
             //validation
             try
@@ -114,8 +107,6 @@ namespace PresentationApp.Controllers
                     {
                         string newFilename = @"/Images/" + Guid.NewGuid() + System.IO.Path.GetExtension(data.File.FileName);
                         string absolutePath = _env.WebRootPath;
-
-                        //C:\Users\Ryan\source\repos\BAN62AEP\BAN62AEP\Solution1\PresentationApp\wwwroot\
 
                         using (var stream = System.IO.File.Create(absolutePath + newFilename))
                         {

@@ -9,5 +9,6 @@ namespace ShoppingCart.Domain.Interfaces
     public interface IOrderDetailsRepository
     {
         OrderDetail GetOrderDetails(Guid id);
+        Guid CreateOrderDetails(OrderDetail od);
     }
 }

@@ -17,5 +17,9 @@ namespace ShoppingCart.Application.Interfaces
         void AddProduct(ProductViewModel model);
 
         void DeleteProduct(Guid id);
+
+        void DecreaseStock(Guid id, int qty);
+
+        //IQueryable<ProductViewModel> GetNextProducts(int batch, int index);
     }
 }
