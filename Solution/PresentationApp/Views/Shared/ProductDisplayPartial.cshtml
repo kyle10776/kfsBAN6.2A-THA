@@ -1,32 +1,40 @@
 ﻿
 @model IEnumerable<ShoppingCart.Application.ViewModels.ProductViewModel>
 
-
+@{ var quantity = 1; }
 @foreach (var p in Model)
 {
 
-    <div class="col-sm-6">
+<div class="col-sm-6">
 
-        <div class="card " style="width: 18rem;">
+    <div class="card " style="width: 18rem;">
 
-            <img src="@p.ImageUrl" class="card-img-top image" alt="image" crossorigin="anonymous">
-
-
-            <div class="card-body">
-                <h5 class="card-title">@p.Name</h5>
-                <p class="card-text">€ @p.Price</p>
-
-                <a href="Products/Details?id=@p.Id" class="btn btn-primary">Details</a>
-
-                @if (User.IsInRole("Admin"))
-                {
-                    <a href="Products/Delete?id=@p.Id" class="btn btn-danger" onclick="return window.confirm('Are you sure?')">Delete</a>
-                }
+        <img src="@p.ImageUrl" class="card-img-top image" alt="image" crossorigin="anonymous">
 
 
+        <div class="card-body">
+            <h5 class="card-title">@p.Name</h5>
+            <p class="card-text">€ @p.Price</p>
 
-                @*@Html.ActionLink("Details", "Details", new { id = p.Id }, new {@class="btn btn-primary"})*@
+            <div class="def-number-input number-input safari_only mb-3 w-100">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        class="minus decrease"></button>
+                @Html.TextBox("quantity")
+                @*<input class="quantity" min="0" name="quantity" value="1" type="number">*@
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        class="plus increase"></button>
             </div>
+
+
+
+            <a href="Products/Details?id=@p.Id" class="btn btn-outline-primary">Details</a>
+            <a href="Cart/AddToCart?ProductId=@p.Id&qty=@quantity" class="btn btn-success">Add to Cart</a>
+
+            @if (User.IsInRole("Admin"))
+            {
+        <a href="Products/Delete?id=@p.Id" class="btn btn-outline-danger" onclick="return window.confirm('Are you sure?')">Delete</a> }
         </div>
     </div>
+
+</div>
 }

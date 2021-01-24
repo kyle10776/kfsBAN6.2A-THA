@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<ShoppingCart.Application.ViewModels.CartViewModel>
+
+
+@foreach (var cp in Model)
+{
+
+<div class="col-sm-6">
+
+    <div class="card " style="width: 18rem;">
+
+        <div class="card-body">
+            <h5 class="card-title">@cp.Product.Name</h5>
+            <p class="card-text">Quantity:  @cp.Quantity</p>
+
+            <a href="Cart/RemoveFromCart?id=@cp.Id" class="btn btn-danger" onclick="return window.confirm('Are you sure?')">Remove from Cart</a>
+
+        </div>
+    </div>
+
+</div>}

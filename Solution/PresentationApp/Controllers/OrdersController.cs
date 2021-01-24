@@ -10,6 +10,7 @@ namespace PresentationApp.Controllers
     public class OrdersController : Controller
     {
         [Authorize][HttpPost]
+        [Route("Orders/Checkout")]
         public IActionResult Checkout()
         {
             //1. get all the items from the cart table for the logged in user
@@ -30,9 +31,25 @@ namespace PresentationApp.Controllers
             //>> orderdetail no.2 >> Panasonic mobile  qty: 1
 
 
+            try
+            {
+                // 1. get user
+                // 2. get all items in cart for user
+                // 3. create order
 
+                // 4. for each item, check stock
+                // 5. add order detail to order
+                // 6. remove from cart.
 
-            return View();
+                TempData["feedback"] = "Product removed successfully";
+                ModelState.Clear();
+            }
+            catch (Exception ex)
+            {
+                TempData["warning"] = "Product was not removed from cart";
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

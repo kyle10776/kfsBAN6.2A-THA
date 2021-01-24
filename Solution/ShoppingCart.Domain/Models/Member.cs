@@ -8,6 +8,7 @@ namespace ShoppingCart.Domain.Models
     public class Member
     {
         [Key]
+        [Required]
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

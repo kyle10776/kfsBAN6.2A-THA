@@ -18,7 +18,7 @@ namespace PresentationApp.Controllers
         {
             _logger = logger;
         }
-
+        [Route("")]
         public IActionResult Index()
         {
             //...
@@ -29,13 +29,14 @@ namespace PresentationApp.Controllers
             return View();
         }
 
-        
+        [Route("/Privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Route("/Error")]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

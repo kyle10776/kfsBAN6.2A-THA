@@ -12,6 +12,7 @@ using ShoppingCart.Application.ViewModels;
 
 namespace PresentationApp.Controllers
 {
+    
     public class ProductsController : Controller
     {
         private IProductsService _prodService;
@@ -24,13 +25,23 @@ namespace PresentationApp.Controllers
             _env = env;
         }
 
-        public IActionResult Index()
+        [Route("Products")]
+        public IActionResult Index(string keyword)
         {
 
             try
             {
-                var list = _prodService.GetProducts();
-                return View(list);
+                if (string.IsNullOrWhiteSpace(keyword))
+                {
+                    var list = _prodService.GetProducts();
+                    return View(list);
+                }
+                else
+                {
+                    var list = _prodService.GetProducts(keyword);
+                    return View(list);
+                }
+                
             }
             catch(Exception ex)
             {
@@ -58,14 +69,16 @@ namespace PresentationApp.Controllers
         }
     */
 
-        [HttpPost]
-        public IActionResult Search(string keyword) //View you have to use a Form
-        {
-            var list = _prodService.GetProducts(keyword);
-            return View("Index", list);
-        }
-       
+        //[HttpPost]
+        //[Route("Products/Search")]
+        //public IActionResult Search(string keyword) //View you have to use a Form
+        //{
+        //    var list = _prodService.GetProducts(keyword);
+        //    return View("Index", list);
+        //}
 
+
+        [Route("Products/Details")]
         public IActionResult Details(Guid id)
         {
             var p = _prodService.GetProduct(id);
@@ -76,6 +89,7 @@ namespace PresentationApp.Controllers
 
         [HttpGet] //this will be called before loading the Create page
         [Authorize(Roles ="Admin")]
+        [Route("Products/Create")]
         public IActionResult Create()
         {
             CreateModel model = new CreateModel();
@@ -88,6 +102,7 @@ namespace PresentationApp.Controllers
 
         [HttpPost] //2nd method will  be triggered when the user clicks on the submit button!
         [Authorize(Roles = "Admin")]
+        [Route("Products/Create")]
         public IActionResult Create(CreateModel data) //postman, fiddler, burp, zap
         {
             //validation
@@ -128,11 +143,12 @@ namespace PresentationApp.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Route("Products/Delete")]
         public IActionResult Delete(Guid id)
         {
             _prodService.DeleteProduct(id);
 
-            TempData["feedback"] = "product deleted successfully";  //ViewData should be changed to TempData
+            TempData["feedback"] = "Product was deleted successfully";  //ViewData should be changed to TempData
            
             return RedirectToAction("Index");
         }

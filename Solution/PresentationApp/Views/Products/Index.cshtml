@@ -1,25 +1,28 @@
 ﻿@model IEnumerable<ShoppingCart.Application.ViewModels.ProductViewModel>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 <h1>Products Catalogue</h1>
 
- 
 <hr />
-    <div>
-        @Html.Partial("SearchProductPartial")
-    </div>
 
- <hr />
+<div>
+    @Html.Partial("SearchProductPartial")
+</div>
+
+@if (User.IsInRole("Admin"))
+ {
+<a href="Products/Create" class="btn btn-success">Add Product</a>
+ }
+
+<hr />
 
 
 <div class="container">
     <div class="row">
-       @Html.Partial("ProductDisplayPartial", Model)
-       </div>
+        @Html.Partial("ProductDisplayPartial", Model)
+    </div>
 </div>
 
 
- 
+

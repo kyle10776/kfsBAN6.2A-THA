@@ -16,6 +16,7 @@ namespace ShoppingCart.Domain.Models
         [Required]
         public string Email { get; set; }
 
+        [ForeignKey("Product")]
         [Required]
         public Guid ProductFk { get; set; }
 
